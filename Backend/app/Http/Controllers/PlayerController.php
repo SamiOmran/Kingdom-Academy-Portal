@@ -24,7 +24,7 @@ class PlayerController extends APIController
         $players = $service->listPlayers($request->toDTO());
         $message = $players ? 'Success retrieving players' : 'No players are registered';
 
-        return $this->sendResponse($message, data: ListPlayersResource::collection($players));
+        return $this->sendResponse($message, data: ListPlayersResource::collection($players)->response()->getData(true));
     }
 
     /**

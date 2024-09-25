@@ -20,7 +20,7 @@ class ListPlayersResource extends JsonResource
             'id' => $data->id,
             'full_name' => $data->full_name,
             'age' => $data->age,
-            'start_date' => $data->start_date->toDateString(),  
+            'start_date' => $data->start_date->toDateString(),
         ];
     }
 }
