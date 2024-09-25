@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('size', 3);
             $table->boolean('active')->default(true);
             $table->date('start_date')->default(now()->format('Y-m-d'));
-            $table->date('dob');
+            $table->date('dob')->format('Y-m-d');
         });
     }
 

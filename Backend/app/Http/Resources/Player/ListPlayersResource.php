@@ -14,6 +14,13 @@ class ListPlayersResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        $data = $this;
+
+        return [
+            'id' => $data->id,
+            'full_name' => $data->full_name,
+            'age' => $data->age,
+            'start_date' => $data->start_date->toDateString(),  
+        ];
     }
 }

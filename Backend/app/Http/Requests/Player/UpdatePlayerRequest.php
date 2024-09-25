@@ -7,7 +7,7 @@ use App\Enums\PlayerSize;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StorePlayerRequest extends FormRequest
+class UpdatePlayerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,16 +25,16 @@ class StorePlayerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => ['required', 'string', 'max:255'],
-            'middle_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:13', 'min:10'],
-            'city' => ['required', 'string'],
-            'address' => ['required', 'string'],
-            'dob' => ['required'],
-            'size' => ['required', 'string', 'max:3', Rule::in(PlayerSize::values())],
-            'start_date' => ['required', 'before:tomorrow'],
-            'active' => ['required', 'boolean'],
+            'first_name' => ['required', 'sometimes',  'string', 'max:255'],
+            'middle_name' => ['required', 'sometimes',  'string', 'max:255'],
+            'last_name' => ['required', 'sometimes',  'string', 'max:255'],
+            'phone' => ['required', 'sometimes',  'string', 'max:13', 'min:10'],
+            'city' => ['required', 'sometimes',  'string'],
+            'address' => ['required', 'sometimes',  'string'],
+            'dob' => ['required', 'sometimes',  'date'],
+            'size' => ['required', 'sometimes',  'string', 'max:3', Rule::in(PlayerSize::values())],
+            'start_date' => ['required', 'sometimes',  'date', 'before:tomorrow'],
+            'active' => ['required', 'sometimes',  'boolean'],
             'notes' => ['string'],
         ];
     }

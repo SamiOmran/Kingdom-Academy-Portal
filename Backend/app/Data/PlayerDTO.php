@@ -11,15 +11,15 @@ use Spatie\LaravelData\{
 class PlayerDTO extends Data
 {
   public function __construct(
-    public string $first_name,
-    public string $middle_name,
-    public string $last_name,
-    public string $phone,
-    public string $city,
-    public string $address,
+    public Optional|string $first_name,
+    public Optional|string $middle_name,
+    public Optional|string $last_name,
+    public Optional|string $phone,
+    public Optional|string $city,
+    public Optional|string $address,
     public Optional|string $notes,
-    public PlayerSize $size,
-    public string $dob,
+    public Optional|PlayerSize $size,
+    public Optional|string $dob,
     public Optional|bool $active,
     public Optional|string $start_date,
     //

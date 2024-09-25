@@ -9,6 +9,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::group([], function () {
+    Route::apiResource('players', PlayerController::class)->except('store');
     Route::post('register-player', [PlayerController::class, 'store'])
         ->name('guest.storeNewPlayer');
 });

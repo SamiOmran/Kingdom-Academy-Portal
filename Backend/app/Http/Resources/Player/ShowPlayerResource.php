@@ -14,6 +14,13 @@ class ShowPlayerResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        $removeFields = ['first_name', 'middle_name', 'last_name'];
+        $data = array_diff_key(parent::toArray($request), array_flip($removeFields));
+
+        return [
+            'full_name' => $this->fullName,
+            'age' => $this->age,
+            ...$data,
+        ];
     }
 }

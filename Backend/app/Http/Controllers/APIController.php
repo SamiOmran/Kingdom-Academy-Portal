@@ -7,11 +7,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class APIController extends Controller
 {
-    public function sendResponse(string $message, int $status, JsonResource|array $data = null): JsonResponse
+    public function sendResponse(string $message, int $status = 200, JsonResource|array $data = null): JsonResponse
     {
         return response()->json([
             'message' => $message,
-            'data' => $data
+            'data' =>   $data
         ])->setStatusCode($status);
     }
 

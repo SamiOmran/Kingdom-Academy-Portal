@@ -29,16 +29,28 @@ class Player extends Model
     ];
 
     protected $casts = [
-        'dob' => 'date',
-        'start_date' => 'date',
+        'dob' => 'date:Y-m-d',
+        'start_date' => 'date:Y-m-d',
+        'active' => 'bool',
     ];
 
     protected $appends = [
         'age',
     ];
 
+    protected $hidden = [
+        'deleted_at',
+        'updated_at',
+        'created_at',
+    ];
+
     public function getAgeAttribute(): int
     {
         return $this->dob->age;
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        return ucwords("$this->first_name $this->middle_name $this->last_name");
     }
 }
