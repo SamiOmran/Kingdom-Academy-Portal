@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Player\IndexPlayerRequest;
-use App\Http\Requests\Player\UpdatePlayerRequest;
-use App\Http\Resources\Player\ListPlayersResource;
-use App\Http\Resources\Player\ShowPlayerResource;
+use App\Http\Requests\Player\{
+    IndexPlayerRequest,
+    UpdatePlayerRequest,
+    StorePlayerImgRequest,
+    StorePlayerRequest,
+};
+use App\Http\Resources\Player\{
+    ListPlayersResource,
+    ShowPlayerResource,
+};
 use Illuminate\Http\{
     Request,
     JsonResponse,
 };
 use App\Models\Player;
-use App\Http\Requests\Player\StorePlayerRequest;
 use App\Services\PlayerServices;
 
 class PlayerController extends APIController
@@ -72,5 +77,12 @@ class PlayerController extends APIController
         $message = $destroyed ? 'Player removed successfully' : 'Error occurred';
 
         return $this->sendResponse($message);
+    }
+
+    public function storeImg(StorePlayerImgRequest $request, Player $player, PlayerServices $service): JsonResponse
+    {
+        $player = $service->storePlayerImage($player, $request);
+
+        return $this->sendResponse('Success storing player image', 201, new ShowPlayerResource($player));
     }
 }

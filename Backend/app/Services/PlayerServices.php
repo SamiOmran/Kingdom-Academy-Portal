@@ -10,7 +10,9 @@ use App\Data\{
     PlayerDTO,
 };
 use App\Models\Player;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Storage;
 
 class PlayerServices
 {
@@ -39,11 +41,22 @@ class PlayerServices
         return $player->delete();
     }
 
-    // public function getArticlesCount(Player $player): int
-    // {
-    //     // $count = Article::where('author', $player->id)->count();
-    //     $count = $player->articles_count;
+    public function storePlayerImage(Player $player, Request $request): Player
+    {
+        $path = config('app.storage_paths.player_img');
+        $imageFile = $request->file('img');
 
-    //     return $count;
-    // }
+        $imageName = $imageFile->getClientOriginalName();
+
+        $player->update(['img' => storage_path($path) . '\\' . $imageName]);
+        $player->save();
+
+        Storage::putFileAs(
+            'public\imgs\\',
+            $imageFile,
+            $imageName,
+        );
+
+        return $player;
+    }
 }

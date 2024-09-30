@@ -25,7 +25,8 @@ class Player extends Model
         'size',
         'active',
         'start_date',
-        'dob'
+        'dob',
+        'img',
     ];
 
     protected $casts = [

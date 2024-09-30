@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'storage_paths' => [
+        'player_img' => env('PLAYER_IMG', 'app\public\imgs'),
+    ]
 ];

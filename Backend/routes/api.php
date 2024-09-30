@@ -12,4 +12,5 @@ Route::group([], function () {
     Route::apiResource('players', PlayerController::class)->except('store');
     Route::post('register-player', [PlayerController::class, 'store'])
         ->name('guest.storeNewPlayer');
+    Route::post('/players/{player}/img', [PlayerController::class, 'storeImg'])->name('players.storeImg');
 });

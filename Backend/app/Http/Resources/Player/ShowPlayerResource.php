@@ -20,6 +20,7 @@ class ShowPlayerResource extends JsonResource
         return [
             'full_name' => $this->fullName,
             'age' => $this->age,
+            'img' => $this->img,
             ...$data,
         ];
     }
