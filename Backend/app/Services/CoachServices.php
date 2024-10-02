@@ -32,15 +32,16 @@ class CoachServices
         return Coach::create($coachDTO->toArray());
     }
 
-    public function updateCoach(Coach $coach, CoachDTO $coachDTO): bool
+    public function updateCoach(Coach $coach, CoachDTO $coachDTO): Coach
     {
-        return $coach->update($coachDTO->toArray());
+        $coach->update($coachDTO->toArray());
+        $coach->save();
+
+        return $coach;
     }
 
-    public function destroyCoach(Coach $coach): ?bool
+    public function destroyCoach(Coach $coach): true
     {
-        $coach->active = false;
-
         return $coach->delete();
     }
 

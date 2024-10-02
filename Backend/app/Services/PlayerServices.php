@@ -29,16 +29,20 @@ class PlayerServices
         return Player::create($playerDTO->toArray());
     }
 
-    public function updatePlayer(Player $player, PlayerDTO $playerDTO): bool
+
+    public function updatePlayer(Player $player, PlayerDTO $playerDTO): Player
     {
-        return $player->update($playerDTO->toArray());
+        $player->update($playerDTO->toArray());
+        $player->save();
+
+        return $player;
     }
 
-    public function destroyPlayer(Player $player): ?bool
+    public function destroyPlayer(Player $player): true
     {
         $player->active = false;
 
-        return $player->delete();
+        return $player->delete();;
     }
 
 
