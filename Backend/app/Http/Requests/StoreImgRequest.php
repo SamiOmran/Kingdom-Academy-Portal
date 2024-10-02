@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Player;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\File;
 
-class StorePlayerImgRequest extends FormRequest
+class StoreImgRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,14 @@ class StorePlayerImgRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'img' => ['required', 'file', File::types(['png', 'jpg', 'jpeg'])]
+            'img' => ['required', 'mimes:png,jpg']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'img.mimes' => 'img should be of types [png, jpg, jpeg]'
         ];
     }
 }

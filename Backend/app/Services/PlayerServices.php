@@ -41,18 +41,18 @@ class PlayerServices
         return $player->delete();
     }
 
-    public function storePlayerImage(Player $player, Request $request): Player
+
+    public function storeImage(Player $player, Request $request): Player
     {
-        $path = config('app.storage_paths.player_img');
+        $path = config('app.storage_paths.images') . '\\players';
         $imageFile = $request->file('img');
 
         $imageName = $imageFile->getClientOriginalName();
-
         $player->update(['img' => storage_path($path) . '\\' . $imageName]);
         $player->save();
 
         Storage::putFileAs(
-            'public\imgs\\',
+            $path,
             $imageFile,
             $imageName,
         );

@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Player\{
     IndexPlayerRequest,
     UpdatePlayerRequest,
-    StorePlayerImgRequest,
     StorePlayerRequest,
 };
+use App\Http\Requests\StoreImgRequest;
 use App\Http\Resources\Player\{
     ListPlayersResource,
     ShowPlayerResource,
@@ -79,9 +79,9 @@ class PlayerController extends APIController
         return $this->sendResponse($message);
     }
 
-    public function storeImg(StorePlayerImgRequest $request, Player $player, PlayerServices $service): JsonResponse
+    public function storeImg(StoreImgRequest $request, Player $player, PlayerServices $service): JsonResponse
     {
-        $player = $service->storePlayerImage($player, $request);
+        $player = $service->storeImage($player, $request);
 
         return $this->sendResponse('Success storing player image', 201, new ShowPlayerResource($player));
     }

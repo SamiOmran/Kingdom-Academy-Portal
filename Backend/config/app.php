@@ -124,6 +124,6 @@ return [
     ],
 
     'storage_paths' => [
-        'player_img' => env('PLAYER_IMG', 'app\public\imgs'),
+        'images' => env('IMG', 'app\public\imgs'),
     ]
 ];
